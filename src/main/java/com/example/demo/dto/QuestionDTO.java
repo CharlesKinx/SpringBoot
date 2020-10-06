@@ -1,6 +1,8 @@
-package com.example.demo.model;
+package com.example.demo.dto;
 
-public class Question {
+import com.example.demo.model.User;
+
+public class QuestionDTO {
     private Integer id;
     private String title;
     private String description;
@@ -12,14 +14,7 @@ public class Question {
     private Integer likeCount;
     private Integer commentCount;
     private String avatar_url;
-
-    public String getAvatar_url() {
-        return avatar_url;
-    }
-
-    public void setAvatar_url(String avatar_url) {
-        this.avatar_url = avatar_url;
-    }
+    private User user;
 
     public Integer getId() {
         return id;
@@ -99,5 +94,21 @@ public class Question {
 
     public void setCommentCount(Integer commentCount) {
         this.commentCount = commentCount;
+    }
+
+    public String getAvatar_url() {
+        return avatar_url;
+    }
+
+    public void setAvatar_url(String avatar_url) {
+        this.avatar_url = avatar_url;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

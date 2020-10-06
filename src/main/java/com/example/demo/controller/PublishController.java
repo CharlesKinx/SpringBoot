@@ -55,15 +55,17 @@ public class PublishController {
 
         User user = null;
         Cookie[]  cookies= request.getCookies();
-        for(Cookie cookie:cookies){
-            if(cookie.getName().equals("token")){
-                String token = cookie.getValue();
-                user = userMapper.findByToken(token);
-                if(user !=null){
-                    request.getSession().setAttribute("user",user);
-                }
-                break;
+        if(cookies !=null&&cookies.length!=0) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("token")) {
+                    String token = cookie.getValue();
+                    user = userMapper.findByToken(token);
+                    if (user != null) {
+                        request.getSession().setAttribute("user", user);
+                    }
+                    break;
 
+                }
             }
         }
         if(user ==null){
@@ -77,6 +79,7 @@ public class PublishController {
         question.setCreator(user.getId());
         question.setGmtCreate(System.currentTimeMillis());
         question.setGmtModified(question.getGmtCreate());
+        question.setAvatar_url(user.getAvatarUrl());
         questionMapper.create(question);
         return "redirect:/";
     }
