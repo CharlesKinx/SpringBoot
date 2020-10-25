@@ -26,23 +26,23 @@ public class QuestionService {
 
         PageDTO pageDTO = new PageDTO();
         Integer totalCount = questionMapper.count();
-        pageDTO.setPagenation(totalCount,pages,size);
+        pageDTO.setPagenation(totalCount, pages, size);
 
-        if(pages<1){
+        if (pages < 1) {
             pages = 1;
         }
-        if(pages>pageDTO.getTotalPage()){
+        if (pages > pageDTO.getTotalPage()) {
             pages = pageDTO.getTotalPage();
         }
-        Integer offset = size*(pages-1);
+        Integer offset = size * (pages - 1);
 
-        List<Question> questionList = questionMapper.list(offset,size);
+        List<Question> questionList = questionMapper.list(offset, size);
         List<QuestionDTO> questionDTOS = new ArrayList<>();
 
         for (Question question : questionList) {
             User user = userMapper.findById(question.getCreator());
             QuestionDTO questionDTO = new QuestionDTO();
-            BeanUtils.copyProperties(question,questionDTO);
+            BeanUtils.copyProperties(question, questionDTO);
             questionDTO.setUser(user);
             questionDTOS.add(questionDTO);
         }

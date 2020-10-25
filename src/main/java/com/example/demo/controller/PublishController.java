@@ -23,9 +23,11 @@ public class PublishController {
     private UserMapper userMapper;
 
     @GetMapping("/publish")
-    public String publish(){
+    public String publish() {
 
         return "publish";
+
+
     }
 
     @PostMapping("/publish")
@@ -35,27 +37,27 @@ public class PublishController {
             @RequestParam("tag") String tag,
             HttpServletRequest request,
             Model model
-    ){
-        model.addAttribute("title",title);
-        model.addAttribute("description",description);
-        model.addAttribute("tag",tag);
+    ) {
+        model.addAttribute("title", title);
+        model.addAttribute("description", description);
+        model.addAttribute("tag", tag);
 
         if (title == null || title == "") {
-            model.addAttribute("error","标题不能为空！");
+            model.addAttribute("error", "标题不能为空！");
             return "publish";
         }
         if (description == null || description == "") {
-            model.addAttribute("error","问题补充不能为空！");
+            model.addAttribute("error", "问题补充不能为空！");
             return "publish";
         }
         if (tag == null || tag == "") {
-            model.addAttribute("error","标签不能为空！");
+            model.addAttribute("error", "标签不能为空！");
             return "publish";
         }
 
         User user = null;
-        Cookie[]  cookies= request.getCookies();
-        if(cookies !=null&&cookies.length!=0) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null && cookies.length != 0) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("token")) {
                     String token = cookie.getValue();
@@ -68,8 +70,8 @@ public class PublishController {
                 }
             }
         }
-        if(user ==null){
-            model.addAttribute("error","用户未登录！");
+        if (user == null) {
+            model.addAttribute("error", "用户未登录！");
             return "publish";
         }
         Question question = new Question();

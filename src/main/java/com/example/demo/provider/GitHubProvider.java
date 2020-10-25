@@ -8,10 +8,11 @@ import org.springframework.stereotype.Component;
 
 
 import java.io.IOException;
+
 @Component
 public class GitHubProvider {
 
-    public String getAccessToken(AccessTokenDTO accessTokenDTO){
+    public String getAccessToken(AccessTokenDTO accessTokenDTO) {
 
         MediaType js = MediaType.get("application/json; charset=utf-8");
         OkHttpClient client = new OkHttpClient();
@@ -25,21 +26,21 @@ public class GitHubProvider {
             String spilt[] = string.split("&");
             String tokenStr = spilt[0].split("=")[1];
             return tokenStr;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public GithubUser getUser(String accessToken){
+    public GithubUser getUser(String accessToken) {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url("https://api.github.com/user?access_token="+accessToken)
+                .url("https://api.github.com/user?access_token=" + accessToken)
                 .build();
         try {
             Response response = client.newCall(request).execute();
             String string = response.body().string();
-            GithubUser githubUser=JSON.parseObject(string,GithubUser.class);
+            GithubUser githubUser = JSON.parseObject(string, GithubUser.class);
             return githubUser;
         } catch (IOException e) {
             e.printStackTrace();

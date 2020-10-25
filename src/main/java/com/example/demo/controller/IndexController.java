@@ -30,11 +30,11 @@ public class IndexController {
     @GetMapping("/")
     public String index(HttpServletRequest request,
                         Model model,
-                        @RequestParam(name="page",defaultValue = "1") Integer pages,
-                        @RequestParam(name="size",defaultValue = "5") Integer size
-                        ){
-      Cookie[]  cookies= request.getCookies();
-        if(cookies !=null&&cookies.length!=0) {
+                        @RequestParam(name = "page", defaultValue = "1") Integer pages,
+                        @RequestParam(name = "size", defaultValue = "5") Integer size
+    ) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null && cookies.length != 0) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("token")) {
                     String token = cookie.getValue();
@@ -43,11 +43,12 @@ public class IndexController {
                         request.getSession().setAttribute("user", user);
                     }
                     break;
-                }  }
+                }
+            }
         }
 
-        PageDTO pageNation = questionService.list(pages,size);
-        model.addAttribute("pageNation",pageNation);
+        PageDTO pageNation = questionService.list(pages, size);
+        model.addAttribute("pageNation", pageNation);
 
         return "index";
     }
