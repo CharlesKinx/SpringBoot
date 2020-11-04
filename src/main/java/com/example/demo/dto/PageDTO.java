@@ -77,55 +77,44 @@ public class PageDTO {
         this.totalPage = totalPage;
     }
 
-    public void setPagenation(Integer totalCount, Integer page, Integer size) {
+    public void setPagenation(Integer totalPage, Integer page) {
 
-        this.page = page;
-        if(totalCount%size==0){
-            totalPage = totalCount/size;
-        }else {
-            totalPage = totalCount/size+1;
-        }
 
-        if(page<1){
-            page = 1;
-        }
-        if(page>totalPage){
-            page = totalPage;
-        }
+        this.totalPage = totalPage;
         this.page = page;
 
         pages.add(page);
         for (int i = 1; i <= 3; i++) {
-            if(page-i>0){
-                pages.add(0,page-i);
+            if (page - i > 0) {
+                pages.add(0, page - i);
 
             }
-            if(page+i<=totalPage){
-                pages.add(page+i);
+            if (page + i <= totalPage) {
+                pages.add(page + i);
             }
         }
 
-        if(page ==1 ){
-            firstPage =false;
-        }else{
-            firstPage =true;
-        }
-
-        if(totalPage == page){
-            showEndPage = false;
-        }else{
-            showEndPage = true;
-        }
-
-        if(pages.contains(1)){
+        if (page == 1) {
             firstPage = false;
-        }else {
+        } else {
             firstPage = true;
         }
 
-        if(pages.contains(totalPage)){
+        if (totalPage == page) {
             showEndPage = false;
-        }else{
+        } else {
+            showEndPage = true;
+        }
+
+        if (pages.contains(1)) {
+            firstPage = false;
+        } else {
+            firstPage = true;
+        }
+
+        if (pages.contains(totalPage)) {
+            showEndPage = false;
+        } else {
             showEndPage = true;
         }
     }

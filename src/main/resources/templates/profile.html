@@ -34,26 +34,26 @@
             <nav aria-label="Page navigation">
                 <ul class="pagination">
                     <li th:if="pageNation.firstPage">
-                        <a href="/?page=1" aria-label="Previous">
+                        <a href="@{'/profile/'+${section}(page=${1})}" aria-label="Previous">
                             <span aria-hidden="true">&lt;&lt;</span>
                         </a>
                     </li>
                     <li th:if="pageNation.hasPrevious">
-                        <a th:href="@{/(page=${pageNation.page -1})}" aria-label="Previous">
+                        <a th:href="@{'/profile/'+${section}(page=${pageNation.page-1})}" aria-label="Previous">
                             <span aria-hidden="true">&lt;</span>
                         </a>
                     </li>
 
                     <li th:each="page:${pageNation.pages}" th:class="${pageNation.page==page}?'active':''">
-                        <a th:href="@{/(page=${page})}"th:text="${page}" ></a></li>
+                        <a th:href="@{'/profile/'+${section}(page=${page})} " th:text="${page}" ></a></li>
 
                     <li th:if="pageNation.showNext">
-                        <a th:href="@{/(page=${pageNation.page+1})}" aria-label="Previous">
+                        <a th:href=" @{'/profile/'+${section}(page=${pageNation.page+1})}" aria-label="Previous">
                             <span aria-hidden="true">&gt;</span>
                         </a>
                     </li>
                     <li th:if="pageNation.showEndPage">
-                        <a th:href="@{/(page=${pageNation.totalPage})}" aria-label="Previous">
+                        <a th:href=" @{'/profile/'+${section}(page=${pageNation.totalPage})}" aria-label="Previous">
                             <span aria-hidden="true">&gt;&gt;</span>
                         </a>
                     </li>

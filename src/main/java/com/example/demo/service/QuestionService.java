@@ -24,16 +24,24 @@ public class QuestionService {
 
     public PageDTO list(Integer pages, Integer size) {
 
+        Integer totalPage;
         PageDTO pageDTO = new PageDTO();
         Integer totalCount = questionMapper.count();
-        pageDTO.setPagenation(totalCount, pages, size);
+        if(totalCount%size==0){
+            totalPage = totalCount/size;
+        }else {
+            totalPage = totalCount/size+1;
+        }
+
 
         if (pages < 1) {
             pages = 1;
         }
-        if (pages > pageDTO.getTotalPage()) {
-            pages = pageDTO.getTotalPage();
+        if (pages > totalPage) {
+            pages = totalPage;
         }
+
+        pageDTO.setPagenation(totalPage, pages);
         Integer offset = size * (pages - 1);
 
         List<Question> questionList = questionMapper.list(offset, size);
@@ -54,17 +62,24 @@ public class QuestionService {
 
     public PageDTO list(Integer userId, Integer pages, Integer size) {
 
-
+        Integer totalPage;
         PageDTO pageDTO = new PageDTO();
         Integer totalCount = questionMapper.countByUserId(userId);
-        pageDTO.setPagenation(totalCount, pages, size);
+        if(totalCount%size==0){
+            totalPage = totalCount/size;
+        }else {
+            totalPage = totalCount/size+1;
+        }
+
 
         if (pages < 1) {
             pages = 1;
         }
-        if (pages > pageDTO.getTotalPage()) {
-            pages = pageDTO.getTotalPage();
+        if (pages > totalPage) {
+            pages = totalPage;
         }
+
+        pageDTO.setPagenation(totalPage, pages);
         Integer offset = size * (pages - 1);
 
         List<Question> questionList = questionMapper.listByUserId(userId,offset, size);
