@@ -12,6 +12,7 @@ import java.util.List;
 @Mapper
 
 public interface QuestionMapper {
+
     @Insert("insert into question (title,description,gmt_create,gmt_modified,creator,tag,avatar_url)  values(#{title},#{description},#{gmtCreate},#{gmtModified},#{creator},#{tag},#{avatar_url})")
     public void create(Question question);
 
@@ -26,4 +27,8 @@ public interface QuestionMapper {
 
     @Select("select count(1) from question where creator=#{userId}" )
     Integer countByUserId(@Param(value = "userId") Integer userId);
+
+    @Select("select * from question where id=#{id}")
+    Question getById(@Param("id") Integer id);
+
 }
