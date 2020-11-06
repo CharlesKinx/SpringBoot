@@ -11,6 +11,7 @@ public class PageDTO {
     private boolean showEndPage;
     private Integer page;
     private Integer totalPage;
+
     private List<Integer> pages = new ArrayList<>();
 
     public List<QuestionDTO> getQuestion() {

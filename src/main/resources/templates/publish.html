@@ -6,7 +6,9 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/bootstrap-theme.css">
     <link rel="stylesheet" href="/css/demo.css">
+    <link rel="stylesheet" href="/css/editormd.min.css">
     <script src="/js/jquery-3.5.1.min.js"></script>
+    <script src="/js/editormd.min.js"></script>
     <script src = "/js/bootstrap.min.js" type="application/javascript"></script>
 </head>
 <body>
@@ -22,9 +24,11 @@
                 <label for="title">问题标题 </label>
                 <input type="text" class="form-control" th:value="${title}" id="title" name="title" placeholder="问题标题...">
                 </div>
-                <div class="form-group">
-                    <label for="description">问题补充（必填，参考右侧提示） </label>
-                    <textarea name="description" id="description" class="form-control" th:value="${description}" cols="30" rows="10"></textarea>
+
+
+                <div class="form-group" >
+                    <label for="description" >问题补充（必填，参考右侧提示） </label>
+                    <textarea  name="description" id="description" style="display:none;" class="form-control" th:value="${description}" cols="30" rows="10"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="tag">添加标签 </label>
@@ -39,7 +43,6 @@
                                  th:if="${error!=null}">
 
                             </div>
-
                         </div>
                         <div class=" col-lg-3 col-md-12 col-sm-12 col-xs-12">
                             <button type="submit" class="btn btn-success btn-publish">提交</button>

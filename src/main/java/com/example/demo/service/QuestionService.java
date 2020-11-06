@@ -65,12 +65,11 @@ public class QuestionService {
         Integer totalPage;
         PageDTO pageDTO = new PageDTO();
         Integer totalCount = questionMapper.countByUserId(userId);
-        if(totalCount%size==0){
+        if(totalCount%size == 0){
             totalPage = totalCount/size;
         }else {
             totalPage = totalCount/size+1;
         }
-
 
         if (pages < 1) {
             pages = 1;

@@ -83,7 +83,9 @@ public class PublishController {
         question.setCreator(user.getId());
         question.setAvatar_url(user.getAvatarUrl());
         question.setId(id);
+        question.setGmtCreate(System.currentTimeMillis());
         questionService.createOrUpdate(question);
+
         return "redirect:/";
     }
 }

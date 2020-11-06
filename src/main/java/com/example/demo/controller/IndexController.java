@@ -34,7 +34,6 @@ public class IndexController {
 
         PageDTO pageNation = questionService.list(pages, size);
         model.addAttribute("pageNation", pageNation);
-
         return "index";
     }
 

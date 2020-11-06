@@ -39,7 +39,7 @@ public class ProfileController {
             model.addAttribute("sectionName","我的提问");
 
         }else if("replies".equals(action)){
-            model.addAttribute("section", "replies");
+            model.addAttribute("sectizon", "replies");
             model.addAttribute("sectionName","我的回复");
         }
 
